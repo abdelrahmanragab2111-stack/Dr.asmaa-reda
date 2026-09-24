@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>صيدلية العقبي | اختاري مشكلتك واطلبي علاجك</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#F3F8F6; --surface:#FFFFFF; --ink:#12302A; --muted:#5B7169;
+  --line:#D5E4DE; --brand:#0F6B57; --brand-ink:#FFFFFF; --soft:#DDF0E9;
+  --price:#B4530A; --warn-bg:#FFF1E0; --warn-ink:#8A3B00; --wa:#1FA855;
+  --shadow:0 1px 2px rgba(15,60,50,.08);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1A17; --surface:#16261F; --ink:#E6F2ED; --muted:#96AFA5;
+    --line:#284238; --brand:#3FBF9F; --brand-ink:#08221A; --soft:#1C3A30;
+    --price:#F0A868; --warn-bg:#3A2612; --warn-ink:#FFC58F; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1A17; --surface:#16261F; --ink:#E6F2ED; --muted:#96AFA5;
+  --line:#284238; --brand:#3FBF9F; --brand-ink:#08221A; --soft:#1C3A30;
+  --price:#F0A868; --warn-bg:#3A2612; --warn-ink:#FFC58F; --shadow:none;
+}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"IBM Plex Sans Arabic","Segoe UI",Tahoma,Arial,sans-serif;
+  line-height:1.7;font-size:16px;padding-bottom:96px}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+.wrap{max-width:720px;margin:0 auto;padding:0 16px}
+
+/* header */
+header{background:var(--brand);color:var(--brand-ink);padding:26px 0 30px}
+header h1{margin:0 0 4px;font-size:1.7rem;font-weight:700;line-height:1.3}
+header p{margin:0;opacity:.9;font-size:1rem}
+.doc{margin-top:16px;background:rgba(255,255,255,.14);border-radius:14px;padding:12px 14px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.doc b{display:block;font-size:1.1rem}
+.doc span{opacity:.92;font-size:.95rem}
+.dbtns{display:flex;gap:8px}
+.dbtns a{background:var(--brand-ink);color:var(--brand);text-decoration:none;font-weight:600;
+  padding:8px 16px;border-radius:999px;font-size:.95rem}
+
+h2{font-size:1.2rem;margin:28px 0 12px;font-weight:700}
+.cats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cat{background:var(--surface);border:2px solid var(--line);border-radius:14px;
+  padding:16px 12px;text-align:center;cursor:pointer;box-shadow:var(--shadow);
+  font-weight:600;font-size:1.05rem;min-height:84px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:2px}
+.cat small{font-weight:400;color:var(--muted);font-size:.82rem}
+.cat[aria-pressed="true"]{border-color:var(--brand);background:var(--soft)}
+
+.issues{display:flex;flex-direction:column;gap:8px}
+.issue{background:var(--surface);border:2px solid var(--line);border-radius:12px;
+  padding:13px 14px;text-align:right;cursor:pointer;font-weight:500}
+.issue[aria-pressed="true"]{border-color:var(--brand);background:var(--soft);font-weight:600}
+
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;
+  padding:18px;box-shadow:var(--shadow)}
+.panel h3{margin:0 0 8px;font-size:1.2rem}
+.panel p{margin:0 0 10px}
+.listen{display:inline-flex;align-items:center;gap:8px;background:var(--brand);
+  color:var(--brand-ink);border:0;border-radius:999px;padding:10px 18px;
+  cursor:pointer;font-weight:600}
+.listen[aria-pressed="true"]{background:var(--price)}
+.note{font-size:.85rem;color:var(--muted);margin-top:8px}
+
+.offers{display:grid;gap:12px;margin-top:16px}
+.offer{border:1px solid var(--line);border-radius:14px;padding:14px;background:var(--bg)}
+.offer.best{border:2px solid var(--brand)}
+.offer .tag{display:inline-block;background:var(--brand);color:var(--brand-ink);
+  font-size:.78rem;padding:1px 10px;border-radius:999px;margin-bottom:6px;font-weight:600}
+.offer h4{margin:0 0 2px;font-size:1.05rem}
+.offer p{margin:0 0 8px;color:var(--muted);font-size:.93rem}
+.offer .row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.price{color:var(--price);font-weight:700;font-size:1.2rem}
+.price s{color:var(--muted);font-weight:400;font-size:.9rem;margin-inline-start:6px}
+.btn{background:var(--brand);color:var(--brand-ink);border:0;border-radius:10px;
+  padding:10px 18px;font-weight:600;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--brand);border:2px solid var(--brand)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+
+/* form fields */
+.field{display:flex;flex-direction:column;gap:4px;margin-bottom:12px}
+.field label,.field legend{font-weight:600;font-size:.95rem}
+.field input,.field select{border:2px solid var(--line);background:var(--surface);
+  border-radius:10px;padding:11px 12px;width:100%;min-height:46px}
+.field input:focus,.field select:focus{border-color:var(--brand);outline:none}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+fieldset{border:0;padding:0;margin:0 0 12px}
+.radios{display:flex;gap:10px}
+.radios label{flex:1;border:2px solid var(--line);border-radius:10px;padding:10px;
+  text-align:center;cursor:pointer;font-weight:500;background:var(--surface)}
+.radios input{position:absolute;opacity:0;pointer-events:none}
+.radios label:has(input:checked){border-color:var(--brand);background:var(--soft);font-weight:600}
+.radios label:has(input:focus-visible){outline:3px solid var(--brand)}
+.alert{background:var(--warn-bg);color:var(--warn-ink);border-radius:12px;padding:12px 14px;margin:8px 0;font-weight:500}
+.bmi{background:var(--soft);border-radius:10px;padding:8px 12px;margin-bottom:12px;font-size:.95rem}
+.err{color:#C0392B;font-size:.85rem;min-height:1em}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .err{color:#FF8E7F}}
+
+/* cart */
+.cartbar{position:fixed;inset-inline:0;bottom:0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+  background:var(--surface);border-top:1px solid var(--line);z-index:5}
+.cartbar .in{max-width:720px;margin:0 auto;display:flex;align-items:center;gap:12px;justify-content:space-between}
+.cartbar b{font-size:1.05rem}
+.item{display:flex;gap:10px;justify-content:space-between;align-items:flex-start;
+  padding:12px 0;border-bottom:1px solid var(--line)}
+.item:last-child{border-bottom:0}
+.item .nm{font-weight:600}
+.item .sub{color:var(--muted);font-size:.85rem}
+.qty{display:flex;align-items:center;gap:8px;margin-top:6px}
+.qty button{width:34px;height:34px;border-radius:8px;border:2px solid var(--line);
+  background:var(--surface);cursor:pointer;font-weight:700;font-size:1.1rem}
+.qty .rm{width:auto;padding:0 10px;font-size:.85rem;font-weight:500;color:#C0392B}
+.total{display:flex;justify-content:space-between;font-weight:700;font-size:1.1rem;padding:12px 0}
+.wa{width:100%;background:var(--wa);color:#fff;border:0;border-radius:12px;padding:15px;
+  font-weight:700;font-size:1.1rem;cursor:pointer;display:flex;justify-content:center;gap:8px;align-items:center}
+.empty{color:var(--muted);text-align:center;padding:14px 0}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:no-preference){
+  .panel{animation:in .25s ease-out}
+  @keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>صيدلية العقبي</h1>
+    <p>اختاري مشكلتك، اسمعي الشرح، واطلبي التركيبة المناسبة لك</p>
+    <div class="doc">
+      <div><b>دكتورة أسماء رضا</b><span dir="ltr">01050966874</span></div>
+      <div class="dbtns">
+        <a href="tel:+201050966874">اتصال</a>
+        <a href="https://wa.me/201050966874" target="_blank" rel="noopener">واتساب</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <h2>١. ما الذي تريدين علاجه؟</h2>
+  <div class="cats" id="cats" role="group" aria-label="القسم"></div>
+
+  <div id="issuesBox" hidden>
+    <h2 id="issuesTitle">٢. اختاري مشكلتك</h2>
+    <div class="issues" id="issues"></div>
+  </div>
+
+  <div id="detailBox" hidden>
+    <h2>٣. الشرح والعروض</h2>
+    <div class="panel" id="detail"></div>
+  </div>
+
+  <div id="cartBox">
+    <h2>سلة الطلبات</h2>
+    <div class="panel">
+      <div id="cartList"></div>
+      <div class="total" id="totalRow" hidden><span>الإجمالي</span><span id="totalVal"></span></div>
+      <p class="note" id="shipNote" hidden>مصاريف الشحن تُحدد عند تأكيد الطلب.</p>
+    </div>
+  </div>
+
+  <div id="checkout" hidden>
+    <h2>بيانات التوصيل</h2>
+    <div class="panel">
+      <div class="field"><label for="fName">الاسم</label><input id="fName" autocomplete="name"><div class="err" id="eName"></div></div>
+      <div class="field"><label for="fPhone">رقم الهاتف</label><input id="fPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="01xxxxxxxxx"><div class="err" id="ePhone"></div></div>
+      <div class="grid2">
+        <div class="field"><label for="fGov">المحافظة</label><select id="fGov"></select><div class="err" id="eGov"></div></div>
+        <div class="field"><label for="fCity">المدينة</label><input id="fCity" autocomplete="address-level2"><div class="err" id="eCity"></div></div>
+      </div>
+      <div class="field"><label for="fStreet">اسم الشارع</label><input id="fStreet" autocomplete="street-address"><div class="err" id="eStreet"></div></div>
+      <div class="field"><label for="fMark">مكان مميز</label><input id="fMark" placeholder="مثال: بجوار مسجد أو صيدلية أو مدرسة"></div>
+      <button class="wa" id="sendBtn" type="button">إرسال الطلب على واتساب</button>
+      <p class="note">سيفتح واتساب برسالة جاهزة فيها طلبك وبياناتك، اضغطي إرسال لتصل إلينا.</p>
+    </div>
+  </div>
+</main>
+
+<div class="cartbar" id="cartbar" hidden>
+  <div class="in">
+    <div><b id="barCount"></b> <span id="barTotal" class="price"></span></div>
+    <button class="btn" id="goCart" type="button">إتمام الطلب</button>
+  </div>
+</div>
+
+<script>
+/* ============ إعدادات يمكن تعديلها ============ */
+const WHATSAPP_NUMBER = "201050966874"; // رقم واتساب الدكتورة أسماء رضا بالصيغة الدولية
+const CURRENCY = "جنيه";
+
+/* الأسعار والأسماء أدناه أمثلة مؤقتة، عدّليها حسب تركيباتكم.
+   لكل عرض: name اسم العرض، desc وصف قصير، price السعر، old السعر قبل الخصم (اختياري)، best لإظهار "الأكثر طلباً" */
+const std = (base) => [
+  {name:"باقة الشهر الأول", desc:"تركيبة تكفي شهراً مع تعليمات الاستخدام", price:base},
+  {name:"باقة ٣ شهور", desc:"كورس كامل لنتيجة أوضح، بسعر أوفر", price:Math.round(base*2.5), old:base*3, best:true}
+];
+
+const DATA = {
+  hair:{ label:"الشعر", sub:"تساقط، هيشان، قشرة", title:"مشكلة الشعر", issues:{
+    h1:{t:"شعر خفيف وتساقط", say:"مناسبة لمن تلاحظ أن شعرها أصبح أقل كثافة مع زيادة في التساقط. التركيبة تعمل على تغذية فروة الرأس وتقوية البصيلات وتقليل التساقط تدريجياً، وتظهر النتيجة عادة بعد ٤ إلى ٦ أسابيع من الانتظام.", offers:std(450)},
+    h2:{t:"تساقط وفراغات وقشرة", say:"لمن تعاني من تساقط مع ظهور فراغات وقشرة في نفس الوقت. التركيبة تجمع بين علاج القشرة وتهدئة فروة الرأس ودعم نمو الشعر في المناطق الخفيفة.", offers:std(500)},
+    h3:{t:"تساقط والشعر خفيف أو فراغات", say:"لمن لديها تساقط وخفة في الشعر أو فراغات ظاهرة. التركيبة تنشّط الدورة الدموية في فروة الرأس وتدعم البصيلات الضعيفة لتحسين الكثافة.", offers:std(500)},
+    h4:{t:"خفيف وهيشان وتقصف", say:"لمن يعاني شعرها من الخفة مع الهيشان والتقصف. التركيبة تقوّي الساق الشعري وترطبه وتقلل الانقصاف مع تحسين الملمس واللمعان.", offers:std(450)},
+    h5:{t:"هشاشة وتقصف وجفاف", say:"للشعر الهش الجاف كثير التقصف. التركيبة ترطب وتغذي وتعيد المرونة للشعر لتقليل الكسر وتحسين الملمس.", offers:std(420)},
+    h6:{t:"ترميم وعلاج أضرار بروتين", say:"للشعر المتضرر من الصبغات أو الفرد بالكيراتين أو الحرارة. التركيبة تعوّض البروتين المفقود وترمم الألياف التالفة، وتظهر النتيجة على الملمس والمظهر بعد الجلسات الأولى.", offers:std(480)},
+    h7:{t:"صعب وراثي", say:"التساقط الوراثي يحتاج انتظاماً وصبراً، والهدف من العلاج تقليل التساقط وتحسين الكثافة قدر الإمكان وليس ضمان نتيجة كاملة. ننصح بالتواصل مع الصيدلي لتحديد التركيبة الأنسب لحالتك.", offers:std(600)}
+  }},
+  skin:{ label:"البشرة", sub:"تصبغات، حبوب، هالات", title:"مشكلة البشرة", issues:{
+    s1:{t:"التصبغات", say:"لتوحيد لون البشرة والتخفيف من البقع الداكنة والتصبغات. التركيبة تعمل تدريجياً، ويجب استخدام واقي الشمس خلال النهار للحصول على نتيجة أفضل.", offers:std(400)},
+    s2:{t:"حبوب وآثار حبوب", say:"للتحكم في الحبوب وتقليل الإفرازات الدهنية والتخفيف من آثار الحبوب القديمة مع الحفاظ على توازن البشرة.", offers:std(420)},
+    s3:{t:"عناية متكاملة بالبشرة", say:"روتين كامل للتنظيف والترطيب والتغذية للحفاظ على بشرة صحية ومشرقة.", offers:std(550)},
+    s4:{t:"تقشير بارد", say:"تقشير لطيف على البشرة يزيل الخلايا الميتة ويعطي نضارة وتجانساً في اللون بدون التهاب أو احمرار شديد.", offers:std(350)},
+    s5:{t:"هالات", say:"للتخفيف من الهالات الداكنة حول العين وتحسين مظهر المنطقة وترطيبها. النتيجة تختلف حسب سبب الهالات.", offers:std(300)},
+    s6:{t:"جلد الوزة وتفتيح الكوع والركبة", say:"لتنعيم الخشونة المعروفة بجلد الوزة وتفتيح المناطق الداكنة كالكوع والركبة بانتظام الاستخدام.", offers:std(380)},
+    s7:{t:"مجموعة تفتيح البشرة الدهنية", say:"تفتيح مناسب للبشرة الدهنية بتركيبة خفيفة لا تسد المسام ولا تزيد اللمعان.", offers:std(450)},
+    s8:{t:"مجموعة تفتيح المناطق الحساسة", say:"مجموعة لطيفة مخصصة لتفتيح المناطق الحساسة بأمان مع ترطيب وتهدئة.", offers:std(450)},
+    s9:{t:"مجموعة النضارة وعلاج المسام الواسعة", say:"لتضييق مظهر المسام وإعطاء البشرة نضارة وصفاء ونعومة.", offers:std(480)}
+  }},
+  slim:{ label:"التخسيس", sub:"أعشاب وسكر", title:"التخسيس", issues:{
+    l1:{t:"مجموعة التخسيس أعشاب وسكر", slim:true, say:"مجموعة أعشاب تساعد على تنظيم الشهية والهضم وضبط السكر ضمن نظام غذائي متوازن ونشاط بدني. أدخلي بياناتك أولاً لنتأكد أن المجموعة مناسبة لك.", offers:[
+      {name:"باقة الشهر الأول", desc:"مجموعة تكفي شهراً مع خطة غذائية بسيطة", price:600},
+      {name:"باقة ٣ شهور", desc:"كورس كامل لنتيجة ثابتة", price:1500, old:1800, best:true}
+    ]}
+  }},
+  gain:{ label:"النحافة", sub:"زيادة وزن بدون كورتيزون", title:"النحافة وزيادة الوزن", issues:{
+    g1:{t:"شراب وبودر", say:"تركيبة لزيادة الوزن وتحسين الشهية بدون كورتيزون. الشراب يفتح الشهية والبودر يمد الجسم بالسعرات والعناصر الغذائية.", offers:[
+      {name:"شراب + بودر (شهر)", desc:"بدون كورتيزون", price:550},
+      {name:"شراب + بودر (٣ شهور)", desc:"كورس كامل لزيادة ثابتة", price:1400, old:1650, best:true}
+    ]},
+    g2:{t:"شراب وبودر وكريم أنوثة", say:"نفس تركيبة الشراب والبودر مع كريم أنوثة لتوزيع الزيادة وإبراز الجسم بشكل أنثوي. بدون كورتيزون.", offers:[
+      {name:"شراب + بودر + كريم (شهر)", desc:"بدون كورتيزون", price:750},
+      {name:"شراب + بودر + كريم (٣ شهور)", desc:"كورس كامل", price:1900, old:2250, best:true}
+    ]}
+  }}
+};
+
+const GOVS = ["القاهرة","الجيزة","الإسكندرية","الدقهلية","البحر الأحمر","البحيرة","الفيوم","الغربية","الإسماعيلية","المنوفية","المنيا","القليوبية","الوادي الجديد","السويس","أسوان","أسيوط","بني سويف","بورسعيد","دمياط","الشرقية","جنوب سيناء","كفر الشيخ","مطروح","الأقصر","قنا","شمال سيناء","سوهاج"];
+
+/* ============ الحالة ============ */
+const cart = [];           // {id, name, sub, price, qty, note}
+let curCat=null, curIssue=null, speaking=false;
+let slimInfo = {h:"",w:"",a:"",preg:"no",bp:"no"};
+const $ = (id)=>document.getElementById(id);
+const fmt = n => n.toLocaleString("ar-EG")+" "+CURRENCY;
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+/* ============ الأقسام والمشاكل ============ */
+function renderCats(){
+  $("cats").innerHTML = Object.entries(DATA).map(([k,c])=>
+    `<button class="cat" data-k="${k}" aria-pressed="${curCat===k}">${c.label}<small>${c.sub}</small></button>`).join("");
+  $("cats").querySelectorAll(".cat").forEach(b=>b.onclick=()=>pickCat(b.dataset.k));
+}
+function pickCat(k){
+  stopSpeak(); curCat=k; curIssue=null; renderCats();
+  const c=DATA[k];
+  $("issuesTitle").textContent = "٢. اختاري "+(k==="slim"?"البرنامج":k==="gain"?"النوع":"مشكلتك");
+  $("issuesBox").hidden=false; $("detailBox").hidden=true;
+  $("issues").innerHTML = Object.entries(c.issues).map(([ik,i])=>
+    `<button class="issue" data-i="${ik}" aria-pressed="false">${i.t}</button>`).join("");
+  $("issues").querySelectorAll(".issue").forEach(b=>b.onclick=()=>pickIssue(b.dataset.i));
+  $("issuesBox").scrollIntoView({behavior:"smooth",block:"start"});
+  if(Object.keys(c.issues).length===1) pickIssue(Object.keys(c.issues)[0]);
+}
+function pickIssue(ik){
+  stopSpeak(); curIssue=ik;
+  document.querySelectorAll(".issue").forEach(b=>b.setAttribute("aria-pressed",b.dataset.i===ik));
+  renderDetail();
+  $("detailBox").hidden=false;
+  $("detailBox").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+/* ============ الشرح والعروض ============ */
+function slimStatus(){
+  const {h,w,a,preg,bp}=slimInfo;
+  const H=parseFloat(h),W=parseFloat(w),A=parseInt(a);
+  if(preg==="yes"||bp==="yes") return {ok:false,msg:"بسبب "+(preg==="yes"?"الحمل أو الرضاعة":"ارتفاع الضغط")+" لا نستطيع ترشيح مجموعة التخسيس بشكل مباشر. من فضلك تواصلي مع الصيدلي على واتساب ليحدد لك البديل الآمن."};
+  if(!H||!W||!A) return {ok:false,msg:"",wait:true};
+  if(A<18) return {ok:false,msg:"مجموعة التخسيس للبالغين فقط (١٨ سنة فأكثر)."};
+  const bmi=W/Math.pow(H/100,2);
+  if(bmi<18.5) return {ok:false,bmi,msg:"وزنك أقل من المعدل الطبيعي، ولا ننصح بالتخسيس. يمكنك الاطلاع على قسم النحافة."};
+  return {ok:true,bmi};
+}
+function renderDetail(){
+  const i=DATA[curCat].issues[curIssue];
+  let html=`<h3>${i.t}</h3><p>${i.say}</p>
+    <button class="listen" id="listenBtn" type="button" aria-pressed="false">🔊 اسمعي الشرح</button>
+    <div class="note" id="voiceNote"></div>`;
+  if(i.slim){
+    html+=`<hr style="border:0;border-top:1px solid var(--line);margin:16px 0">
+    <div class="grid3">
+      <div class="field"><label for="sH">الطول (سم)</label><input id="sH" type="number" inputmode="numeric" min="100" max="230" value="${slimInfo.h}"></div>
+      <div class="field"><label for="sW">الوزن (كجم)</label><input id="sW" type="number" inputmode="numeric" min="30" max="300" value="${slimInfo.w}"></div>
+      <div class="field"><label for="sA">السن</label><input id="sA" type="number" inputmode="numeric" min="10" max="100" value="${slimInfo.a}"></div>
+    </div>
+    <fieldset><legend class="field" style="font-weight:600">هل يوجد حمل أو رضاعة؟</legend>
+      <div class="radios"><label><input type="radio" name="preg" value="no" ${slimInfo.preg==="no"?"checked":""}>لا</label><label><input type="radio" name="preg" value="yes" ${slimInfo.preg==="yes"?"checked":""}>نعم</label></div></fieldset>
+    <fieldset><legend class="field" style="font-weight:600">هل يوجد ضغط عالٍ؟</legend>
+      <div class="radios"><label><input type="radio" name="bp" value="no" ${slimInfo.bp==="no"?"checked":""}>لا</label><label><input type="radio" name="bp" value="yes" ${slimInfo.bp==="yes"?"checked":""}>نعم</label></div></fieldset>
+    <div id="slimResult"></div>`;
+  }
+  html+=`<div id="offersBox"></div>`;
+  $("detail").innerHTML=html;
+  $("listenBtn").onclick=toggleSpeak;
+  if(i.slim){
+    ["sH","sW","sA"].forEach(id=>$(id).oninput=readSlim);
+    document.querySelectorAll('input[name="preg"],input[name="bp"]').forEach(r=>r.onchange=readSlim);
+  }
+  renderOffers();
+}
+function readSlim(){
+  slimInfo={h:$("sH").value,w:$("sW").value,a:$("sA").value,
+    preg:document.querySelector('input[name="preg"]:checked').value,
+    bp:document.querySelector('input[name="bp"]:checked').value};
+  renderOffers();
+}
+function renderOffers(){
+  const i=DATA[curCat].issues[curIssue];
+  let allow=true;
+  if(i.slim){
+    const s=slimStatus(); allow=s.ok;
+    let r="";
+    if(s.bmi) r+=`<div class="bmi">مؤشر كتلة الجسم لديك: <b>${s.bmi.toFixed(1)}</b></div>`;
+    if(s.msg) r+=`<div class="alert">${s.msg}</div>`;
+    if(s.wait) r+=`<div class="note">أدخلي الطول والوزن والسن لعرض العروض.</div>`;
+    $("slimResult").innerHTML=r;
+  }
+  $("offersBox").innerHTML = allow ? `<div class="offers">`+i.offers.map((o,n)=>`
+    <div class="offer ${o.best?"best":""}">
+      ${o.best?'<span class="tag">الأكثر طلباً</span>':""}
+      <h4>${o.name}</h4><p>${o.desc}</p>
+      <div class="row"><div class="price">${fmt(o.price)}${o.old?`<s>${fmt(o.old)}</s>`:""}</div>
+      <button class="btn" data-n="${n}" type="button">أضيفي للسلة</button></div>
+    </div>`).join("")+`</div>` : "";
+  $("offersBox").querySelectorAll("button[data-n]").forEach(b=>b.onclick=()=>addToCart(+b.dataset.n,b));
+}
+
+/* ============ الصوت ============ */
+function toggleSpeak(){ speaking?stopSpeak():startSpeak(); }
+function startSpeak(){
+  const note=$("voiceNote");
+  if(!("speechSynthesis" in window)){note.textContent="جهازك لا يدعم القراءة الصوتية، يمكنك قراءة الشرح أعلاه.";return;}
+  const i=DATA[curCat].issues[curIssue];
+  const u=new SpeechSynthesisUtterance(i.t+". "+i.say);
+  u.lang="ar-EG"; u.rate=0.95;
+  const v=speechSynthesis.getVoices().find(v=>v.lang&&v.lang.toLowerCase().startsWith("ar"));
+  if(v) u.voice=v; else note.textContent="إن لم تسمعي صوتاً فقد يكون جهازك بلا صوت عربي، والشرح مكتوب أعلاه.";
+  u.onend=u.onerror=()=>setSpeak(false);
+  speechSynthesis.cancel(); speechSynthesis.speak(u); setSpeak(true);
+}
+function setSpeak(s){ speaking=s; const b=$("listenBtn"); if(b){b.setAttribute("aria-pressed",s);b.textContent=s?"⏹ إيقاف الشرح":"🔊 اسمعي الشرح";} }
+function stopSpeak(){ try{speechSynthesis.cancel();}catch(e){} setSpeak(false); }
+
+/* ============ السلة ============ */
+function addToCart(n,btn){
+  const i=DATA[curCat].issues[curIssue], o=i.offers[n];
+  const id=curIssue+"-"+n;
+  const note=i.slim?`الطول ${slimInfo.h} سم، الوزن ${slimInfo.w} كجم، السن ${slimInfo.a}`:"";
+  const ex=cart.find(c=>c.id===id);
+  if(ex) ex.qty++; else cart.push({id,name:o.name,sub:i.t,price:o.price,qty:1,note});
+  renderCart();
+  const old=btn.textContent; btn.textContent="تمت الإضافة ✓"; setTimeout(()=>btn.textContent=old,1200);
+}
+function renderCart(){
+  const cnt=cart.reduce((s,c)=>s+c.qty,0), tot=cart.reduce((s,c)=>s+c.qty*c.price,0);
+  $("cartList").innerHTML = cart.length ? cart.map((c,k)=>`
+    <div class="item"><div><div class="nm">${esc(c.name)}</div><div class="sub">${esc(c.sub)}${c.note?" · "+esc(c.note):""}</div>
+      <div class="qty"><button data-a="minus" data-k="${k}" aria-label="تقليل">−</button><b>${c.qty}</b><button data-a="plus" data-k="${k}" aria-label="زيادة">+</button><button class="rm" data-a="rm" data-k="${k}">حذف</button></div></div>
+      <div class="price">${fmt(c.price*c.qty)}</div></div>`).join("")
+    : `<div class="empty">السلة فارغة، اختاري مشكلتك وأضيفي ما يناسبك.</div>`;
+  $("cartList").querySelectorAll("button[data-a]").forEach(b=>b.onclick=()=>{
+    const k=+b.dataset.k, a=b.dataset.a;
+    if(a==="plus") cart[k].qty++; else if(a==="minus"){ cart[k].qty--; if(cart[k].qty<1) cart.splice(k,1);} else cart.splice(k,1);
+    renderCart();
+  });
+  $("totalRow").hidden=$("shipNote").hidden=!cart.length;
+  $("totalVal").textContent=fmt(tot);
+  $("checkout").hidden=!cart.length;
+  $("cartbar").hidden=!cart.length;
+  $("barCount").textContent=cnt.toLocaleString("ar-EG")+" في السلة";
+  $("barTotal").textContent=fmt(tot);
+}
+$("goCart").onclick=()=>$("cartBox").scrollIntoView({behavior:"smooth",block:"start"});
+
+/* ============ إرسال واتساب ============ */
+$("fGov").innerHTML='<option value="">اختاري المحافظة</option>'+GOVS.map(g=>`<option>${g}</option>`).join("");
+function need(id,eid,msg,test){ const v=$(id).value.trim(); const bad=test?!test(v):!v; $(eid).textContent=bad?msg:""; return !bad; }
+$("sendBtn").onclick=()=>{
+  if(!cart.length) return;
+  const ok=[
+    need("fName","eName","اكتبي الاسم"),
+    need("fPhone","ePhone","اكتبي رقماً صحيحاً (١٠ أرقام على الأقل)",v=>v.replace(/\D/g,"").length>=10),
+    need("fGov","eGov","اختاري المحافظة"),
+    need("fCity","eCity","اكتبي المدينة"),
+    need("fStreet","eStreet","اكتبي اسم الشارع")
+  ].every(Boolean);
+  if(!ok) return;
+  const tot=cart.reduce((s,c)=>s+c.qty*c.price,0);
+  const lines=cart.map((c,k)=>`${k+1}) ${c.sub} - ${c.name} × ${c.qty} = ${c.price*c.qty} ${CURRENCY}`+(c.note?`\n   (${c.note})`:""));
+  const msg=`طلب جديد من صفحة صيدلية العقبي\n\n*الطلبات:*\n${lines.join("\n")}\n\n*الإجمالي:* ${tot} ${CURRENCY} (بدون الشحن)\n\n*بيانات العميل:*\nالاسم: ${$("fName").value.trim()}\nالهاتف: ${$("fPhone").value.trim()}\nالمحافظة: ${$("fGov").value}\nالمدينة: ${$("fCity").value.trim()}\nالشارع: ${$("fStreet").value.trim()}\nمكان مميز: ${$("fMark").value.trim()||"-"}`;
+  const url="https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(msg);
+  const w=window.open(url,"_blank");
+  if(!w) location.href=url;
+};
+
+renderCats(); renderCart();
+try{ if("speechSynthesis" in window) speechSynthesis.getVoices(); }catch(e){}
+</script>
+</body>
+</html>
